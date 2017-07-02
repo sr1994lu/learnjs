@@ -3,7 +3,7 @@ describe('LearnJS', () => {
     learnjs.showView('#problem-1');
     expect($('.view-container .problem-view').length).toEqual(1);
   });
-  it('show the landing page view when there is no hash', () => {
+  it('shows the landing page view when there is no hash', () => {
     learnjs.showView('');
     expect($('.view-container .landing-view').length).toEqual(1);
   });
@@ -11,5 +11,17 @@ describe('LearnJS', () => {
     spyOn(learnjs, 'problemView');
     learnjs.showView('#problem-42');
     expect(learnjs.problemView).toHaveBeenCalledWith('42');
+  });
+
+  describe('problem view', () => {
+    it('has a title that includes the problem number', () => {
+      const view = learnjs.problemView('1');
+      expect(view.text()).toEqual('Problem #1 Comming soon!');
+    });
+    it('invokes the router when loaded', () => {
+      spyOn(learnjs, 'showView');
+      learnjs.appOnReady();
+      expect(learnjs.showView).toHaveBeenCalledWith(window.location.hash);
+    });
   });
 });
