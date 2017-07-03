@@ -27,4 +27,19 @@ describe('LearnJS', () => {
       expect(view.find(`[data-name="code"]`).text()).toEqual('function problem() { return __; }');
     });
   });
+
+  describe('answer section', () => {
+    it('can check a correct answer by hitting a button', () => {
+      const view = learnjs.problemView('1');
+      view.find('.answer').val('ture');
+      view.find('.check-btn').click();
+      expect(view.find('.result').text()).toEqual('Correct!');
+    });
+    it('rejects an incorrect answer', () => {
+      const view = learnjs.problemView('1');
+      view.find('.answer').val('false');
+      view.find('.check-btn').click();
+      expect(view.find('.result').text()).toEqual('Incorrect!');
+    });
+  });
 });
