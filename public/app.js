@@ -1,9 +1,23 @@
 'use strict';
 let learnjs = {};
 
-learnjs.problemView = problemNumer => {
-  const title = `Problem #${problemNumer} Comming soon!`;
-  return $('<div class="problem-view">').text(title);
+learnjs.problems = [
+  {
+    description: 'What is truth?',
+    code: 'function problem() { return __; }',
+  },
+  {
+    description: 'Simple Math',
+    code: 'function problem() { return 42 === 6 * __; }',
+  },
+];
+
+learnjs.problemView = data => {
+  const problemNumber = parseInt(data, 10);
+  const view = $('.templates .problem-view').clone();
+  view.find('.title').text(`Problem #${problemNumber}`);
+  learnjs.applyObject(learnjs.problems[problemNumber - 1], view);
+  return view;
 };
 
 learnjs.showView = hash => {
@@ -19,5 +33,14 @@ learnjs.showView = hash => {
 };
 
 learnjs.appOnReady = () => {
+  window.onhashchange = () => {
+    learnjs.showView(window.location.hash);
+  };
   learnjs.showView(window.location.hash);
+};
+
+learnjs.applyObject = (obj, elem) => {
+  for (let key in obj) {
+    elem.find(`[data-name="${key}"]`).text(obj[key]);
+  }
 };

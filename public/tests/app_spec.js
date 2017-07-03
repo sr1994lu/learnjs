@@ -16,12 +16,15 @@ describe('LearnJS', () => {
   describe('problem view', () => {
     it('has a title that includes the problem number', () => {
       const view = learnjs.problemView('1');
-      expect(view.text()).toEqual('Problem #1 Comming soon!');
+      expect(view.find('.title').text()).toEqual('Problem #1');
     });
-    it('invokes the router when loaded', () => {
-      spyOn(learnjs, 'showView');
-      learnjs.appOnReady();
-      expect(learnjs.showView).toHaveBeenCalledWith(window.location.hash);
+    it('shows the description', () => {
+      const view = learnjs.problemView('1');
+      expect(view.find(`[data-name="description"]`).text()).toEqual('What is truth?');
+    });
+    it('shows the problem code', () => {
+      const view = learnjs.problemView('1');
+      expect(view.find(`[data-name="code"]`).text()).toEqual('function problem() { return __; }');
     });
   });
 });
