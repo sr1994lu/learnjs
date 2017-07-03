@@ -31,7 +31,7 @@ describe('LearnJS', () => {
   describe('answer section', () => {
     it('can check a correct answer by hitting a button', () => {
       const view = learnjs.problemView('1');
-      view.find('.answer').val('ture');
+      view.find('.answer').val('true');
       view.find('.check-btn').click();
       expect(view.find('.result').text()).toEqual('Correct!');
     });

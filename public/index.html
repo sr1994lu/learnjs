@@ -2,6 +2,8 @@
 <html>
 <head>
   <meta charset='utf-8'>
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <title>Learn JS!</title>
   <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet'
         type='text/css'>
@@ -21,11 +23,55 @@
     .templates {
       display: none;
     }
+
+    .inline-list {
+      margin-bottom: 0;
+    }
+
+    .inline-list li {
+      display: inline;
+      margin: 0 20px 0 0;
+    }
+
+    .fixed-top {
+      position: fixed;
+      top: 0;
+      z-index: 1024;
+    }
+
+    .no-select {
+      user-select: none;
+    }
+
+    .hover-links a {
+      text-decoration: none;
+    }
+
+    .hover-links a:hover {
+      text-decoration: underline;
+    }
+
+    .nav-container {
+      padding-left: 40px;
+      background: #666;
+    }
+
+    .nav-container a {
+      color: white;
+    }
   </style>
 </head>
 <body>
   <div class="markup">
+    <div class="nav-container no-select fixed-top u-full-width">
+      <ul class="inline-list hover-links nav-list six column">
+        <li><a class="text-lg" href="#">LearnJS</a></li>
+        <li><a href="#problem-1">Start</a></li>
+      </ul>
+    </div>
     <div class='view-container container'>
+    </div>
+    <div class="templates">
       <div class="landing-view">
         <div class="row">
           <div class="one-half column">
@@ -37,8 +83,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="templates">
       <div class="problem-view">
         <h3 class="title"></h3>
         <p data-name="description"></p>
@@ -50,6 +94,12 @@
             <p class="result"></p>
           </div>
         </form>
+      </div>
+      <div class="correct-flash">
+        <span>Correct!</span> <a>Next Problem</a>
+      </div>
+      <div>
+        <a>Skip This Problem</a>
       </div>
     </div>
   </div>
